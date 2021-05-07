@@ -1,3 +1,8 @@
+## please run this: ##
+
+
+*node_modules/.bin/cypress open*
+
 Booth details
 - The title of the booth is present in the header
 - Related galleries are visible
