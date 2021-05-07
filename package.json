@@ -1,0 +1,11 @@
+{
+  "name": "cypress-trial",
+  "version": "1.0.0",
+  "description": "Initial cypress tests for booths",
+  "main": "index.js",
+  "author": "Irfan Farrel",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^7.2.0"
+  }
+}
