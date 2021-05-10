@@ -1,7 +1,7 @@
 ## please run this: ##
 
 
-*node_modules/.bin/cypress open*
+*yarn cypress:open*
 
 Booth details
 - The title of the booth is present in the header
