@@ -1,1 +1,5 @@
-{}
+{
+  "baseUrl": "http://dashboard.develop.doitselfie.eu",
+  "pageLoadTimeout": 30000,
+  "projectId": "tf61ej"
+}

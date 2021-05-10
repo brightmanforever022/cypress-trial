@@ -1,6 +1,7 @@
 describe('check page contents', () => {
   it('visit and login', () => {
-    cy.visit('http://dashboard.develop.doitselfie.eu/login')
+    cy.intercept('GET', '/booths').as('boothsPage')
+    cy.visit('/login')
     cy
       .get('.MuiInputBase-input.MuiOutlinedInput-input')
       .eq(0)
@@ -13,8 +14,8 @@ describe('check page contents', () => {
     cy
       .get('[data-test="Login button"]')
       .click()
-      .wait(7000)
-      .url().should('include', 'dashboard.develop.doitselfie.eu/booths')
-
+      .url({timeout: 20000}).should('include', '/booths')
+      
+    
   })
 })
