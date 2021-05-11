@@ -6,7 +6,7 @@
   "author": "Irfan Farrel",
   "license": "MIT",
   "devDependencies": {
-    "cypress": "^7.2.0"
+    "cypress": "7.3.0"
   },
   "scripts": {
     "cypress:open": "npx cypress open"
