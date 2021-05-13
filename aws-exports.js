@@ -87,6 +87,3 @@ const awsmobile = {
     "aws_appsync_authenticationType": "AMAZON_COGNITO_USER_POOLS",
     "aws_appsync_apiKey": "da2-ipqnvz4a4bhqhfjtxlxa5gzk3m"
 };
-
-
-export default awsmobile;

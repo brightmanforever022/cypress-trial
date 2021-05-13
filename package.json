@@ -10,5 +10,10 @@
   },
   "scripts": {
     "cypress:open": "npx cypress open"
+  },
+  "dependencies": {
+    "@aws-amplify/cli": "^4.50.2",
+    "dotenv": "^9.0.2",
+    "path": "^0.12.7"
   }
 }
