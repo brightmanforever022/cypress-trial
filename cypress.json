@@ -1,5 +1,6 @@
 {
   "baseUrl": "http://dashboard.develop.doitselfie.eu",
   "pageLoadTimeout": 30000,
+  "defaultCommandTimeout": 10000,
   "projectId": "tf61ej"
 }

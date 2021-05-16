@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-cypresstrial-dev-31746-authRole",
+      "UnauthRoleArn": "arn:aws:iam::359425148615:role/amplify-cypresstrial-dev-31746-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::359425148615:role/amplify-cypresstrial-dev-31746-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-cypresstrial-dev-31746-deployment",
+      "UnauthRoleName": "amplify-cypresstrial-dev-31746-unauthRole",
+      "StackName": "amplify-cypresstrial-dev-31746",
+      "StackId": "arn:aws:cloudformation:us-east-1:359425148615:stack/amplify-cypresstrial-dev-31746/e16beda0-b48c-11eb-b3c0-0e8805686543",
+      "AmplifyAppId": "dojx80mswdzzq"
+    },
+    "categories": {
+      "function": {
+        "cypresstrial4914cb9aPreTokenGeneration": {
+          "deploymentBucketName": "amplify-cypresstrial-dev-31746-deployment",
+          "s3Key": "amplify-builds/cypresstrial4914cb9aPreTokenGeneration-54445265465958457568-build.zip"
+        }
+      },
+      "auth": {
+        "cypresstrial4914cb9a": {}
+      }
+    }
+  }
+}

@@ -1,6 +1,16 @@
 import Amplify, { Auth } from 'aws-amplify'
+// var AWS = require('aws-sdk');
+import awsmobile from '../../../aws-exports';
 
-Amplify.configure(Cypress.env('awsConfig'))
+Amplify.configure(awsmobile);
+Auth.configure({
+  region: 'eu-central-1',
+  userPoolId: 'eu-central-1_vzht8iuBl',
+  userPoolWebClientId: 'voq51uncia50sa2kp24k5dchj',
+  authenticationFlowType: 'USER_SRP_AUTH',
+})
+
+console.log('credentialsProvider: ', Auth)
 
 // Amazon Cognito
 Cypress.Commands.add('loginByCognitoApi', (username, password) => {
@@ -11,10 +21,19 @@ Cypress.Commands.add('loginByCognitoApi', (username, password) => {
   })
 
   log.snapshot('before')
+  Amplify.configure({
+    Auth: {
+      identityPoolId: 'eu-central-1:8f20ecc8-a28f-41b3-9251-7f4639611c6e', // Amazon Cognito Identity Pool ID
+      region: 'eu-central-1', // Amazon Cognito Region
+    },
+  })
 
-  const signIn = Auth.signIn({ username, password })
+  Auth.signIn(username, password)
+    .then((user) => console.log(user))
+    .catch((err) => console.log('signIn error: ', err))
 
   cy.wrap(signIn, { log: false }).then((cognitoResponse) => {
+    console.log('cognitoResponse: ', cognitoResponse)
     const keyPrefixWithUsername = `${cognitoResponse.keyPrefix}.${cognitoResponse.username}`
 
     window.localStorage.setItem(
