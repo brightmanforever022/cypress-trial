@@ -32,6 +32,9 @@ describe('check page contents', () => {
   
     it('Related galleries are visible', () => {
       cy.contains('Gallery:')
+      cy.get('span > a')
+        .eq(0)
+        .contains('Gallery 1-1')
     })
 
     it('Stop the booth', () => {
@@ -52,5 +55,16 @@ describe('check page contents', () => {
         }
       })
     })
+
+    it('Capture link', () => {
+      cy.get('*[class^="MuiFormControl-root"]')
+        .find('input[type="text"]')
+        .eq(0)
+        .invoke('val')
+        .should(urlStr => {
+          expect(urlStr).to.equal("https://virtual.develop.doitselfie.eu/koda5aoi/a467edec-b4c0-4027-a34b-164811bc8fd2")
+        })
+    })
+
   })
 })
