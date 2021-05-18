@@ -19,17 +19,15 @@ describe('check page contents', () => {
 
   context('detail page', () => {
     before(() => {
-      cy.get('a > p').contains('Demo Photo Booth', {timeout: 20000})
+      cy.get('a > p').contains('Booth 1', {timeout: 20000})
         .click()
         .url({timeout: 20000}).should('include', '/booth-details?id=')
     })
     
     it('The title of the booth is present in the header', () => {
-      cy.get('h5', {timeout: 30000})
-        .should('have.length', 3)
-        // .and(($titleEl) => {
-        //   expect($titleEl.get(0).textContent, 'Title').to.equal('Demo Photo Booth')
-        // })
+      cy.get('[data-test="Page header heading"]')
+        .eq(0)
+        .contains('Booth 1')
     })
   
     it('Related galleries are visible', () => {
@@ -37,10 +35,22 @@ describe('check page contents', () => {
     })
 
     it('Stop the booth', () => {
-      cy.get('div > p').contains('Your Virtual Booth is up and running');
-      cy.get('button > span', {timeout: 30000}).eq(0).contains("Stop")
-        .click({ force: true })
-      cy.get('p', {timeout: 10000}).contains('Stopping your booth')
+      cy.get('button > span').then(($buttons) => {
+        const buttonText = $buttons[0].innerText;
+        if(buttonText.includes('Stop')) {
+          console.log('stop')
+          cy.get('button')
+            .eq(0)
+            .contains('Stop')
+            .click({ force: true })
+        } else {
+          console.log('start')
+          cy.get('button')
+            .eq(0)
+            .contains('Start')
+            .click({ force: true })
+        }
+      })
     })
   })
 })
