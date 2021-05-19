@@ -24,46 +24,67 @@ describe('check page contents', () => {
         .url({timeout: 20000}).should('include', '/booth-details?id=')
     })
     
-    it('The title of the booth is present in the header', () => {
-      cy.get('[data-test="Page header heading"]')
-        .eq(0)
-        .contains('Booth 1')
-    })
+    // it('The title of the booth is present in the header', () => {
+    //   cy.get('[data-test="Page header heading"]')
+    //     .eq(0)
+    //     .contains('Booth 1')
+    // })
   
-    it('Related galleries are visible', () => {
-      cy.contains('Gallery:')
-      cy.get('span > a')
-        .eq(0)
-        .contains('Gallery 1-1')
-    })
+    // it('Related galleries are visible', () => {
+    //   cy.contains('Gallery:')
+    //   cy.get('span > a')
+    //     .eq(0)
+    //     .contains('Gallery 1-1')
+    // })
 
-    it('Stop the booth', () => {
-      cy.get('button > span').then(($buttons) => {
-        const buttonText = $buttons[0].innerText;
-        if(buttonText.includes('Stop')) {
-          console.log('stop')
-          cy.get('button')
-            .eq(0)
-            .contains('Stop')
-            .click({ force: true })
-        } else {
-          console.log('start')
-          cy.get('button')
-            .eq(0)
-            .contains('Start')
-            .click({ force: true })
-        }
-      })
-    })
+    // it('Stop the booth', () => {
+    //   cy.get('button > span').then(($buttons) => {
+    //     const buttonText = $buttons[0].innerText;
+    //     if(buttonText.includes('Stop')) {
+    //       console.log('stop')
+    //       cy.get('button')
+    //         .eq(0)
+    //         .contains('Stop')
+    //         .click({ force: true })
+    //     } else {
+    //       console.log('start')
+    //       cy.get('button')
+    //         .eq(0)
+    //         .contains('Start')
+    //         .click({ force: true })
+    //     }
+    //   })
+    // })
 
-    it('Capture link', () => {
+    // it('Capture link', () => {
+    //   cy.get('*[class^="MuiFormControl-root"]')
+    //     .find('input[type="text"]')
+    //     .eq(0)
+    //     .invoke('val')
+    //     .should(urlStr => {
+    //       expect(urlStr).to.equal("https://virtual.develop.doitselfie.eu/koda5aoi/a467edec-b4c0-4027-a34b-164811bc8fd2")
+    //     })
+    // })
+
+    it('Captured link should work on page', () => {
       cy.get('*[class^="MuiFormControl-root"]')
         .find('input[type="text"]')
         .eq(0)
         .invoke('val')
-        .should(urlStr => {
+        .then(urlStr => {
           expect(urlStr).to.equal("https://virtual.develop.doitselfie.eu/koda5aoi/a467edec-b4c0-4027-a34b-164811bc8fd2")
+          
+          return urlStr
         })
+        .then((urlStr) => {
+          cy.request(urlStr).its('body').should('include', 'Booth 1</h1>')
+          // cy.request(urlStr).then((response) => {
+          //   expect(response.status).to.eq(200)
+          //   expect(response).to.have.property('headers')
+          //   expect(response).to.have.property('duration')
+          // })
+        })
+        
     })
 
   })
