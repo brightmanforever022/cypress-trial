@@ -23,5 +23,6 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-import './auth-provider-commands/cognito';
+
+// import './auth-provider-commands/cognito';
 import './auth-provider-commands/normal';

@@ -1,3 +1,6 @@
+import { Decoder } from '@nuintun/qrcode';
+const qrcode = new Decoder();
+
 describe('check page contents', () => {
   before(() => {
     cy.loginByUsernamePassword();
@@ -29,7 +32,7 @@ describe('check page contents', () => {
         .should('be.visible')
     })
 
-    it('Stop the booth', () => {
+    it('Stop/Start the booth', () => {
       cy.get('button > span').then(($buttons) => {
         const buttonText = $buttons[0].innerText;
         if(buttonText.includes('Stop')) {
@@ -48,20 +51,8 @@ describe('check page contents', () => {
       })
     })
 
-    it('Capture link', () => {
-      cy.get('*[class^="MuiFormControl-root"]')
-        .find('input[type="text"]')
-        .eq(0)
-        .invoke('val')
-        .should(urlStr => {
-          expect(urlStr).to.equal("https://virtual.develop.doitselfie.eu/koda5aoi/a467edec-b4c0-4027-a34b-164811bc8fd2")
-        })
-    })
-
-    it('Captured link should work on page', () => {
-      cy.get('*[class^="MuiFormControl-root"]')
-        .find('input[type="text"]')
-        .eq(0)
+    it('Captured link hould be present on the page', () => {
+      cy.get('*[placeholder="https://virtual.doitselfie.eu/your-booth-link"]')
         .invoke('val')
         .then(urlStr => {
           expect(urlStr).to.equal("https://virtual.develop.doitselfie.eu/koda5aoi/a467edec-b4c0-4027-a34b-164811bc8fd2")
@@ -97,6 +88,14 @@ describe('check page contents', () => {
         .then((urlStr) => {
           cy.request(urlStr).its('body').should('include', 'Subheading of Booth 1</h2>')
         })
+    })
+
+    it('Takes QR Code Screenshot, check its path', () => {
+      cy.get('canvas').screenshot('qrcode', {
+        onAfterScreenshot($el, props) {
+          expect(props.path).to.match(/cypress-trial\/cypress\/screenshots\/Booth\/details.spec.js/i)
+        }
+      })
     })
 
   })

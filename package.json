@@ -15,10 +15,12 @@
     "@aws-amplify/api": "^4.0.0",
     "@aws-amplify/auth": "^4.0.0",
     "@aws-amplify/cli": "^4.44.0",
+    "@nuintun/qrcode": "^3.0.1",
     "aws-amplify": "^4.0.0",
     "aws-appsync": "^4.0.3",
     "aws-sdk": "^2.906.0",
     "dotenv": "^9.0.2",
+    "otpauth": "^7.0.2",
     "path": "^0.12.7"
   }
 }
